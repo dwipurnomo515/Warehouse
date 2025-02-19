@@ -61,10 +61,10 @@
                     </button>
                 </li>
                 <li>
-                    <button class="mt-5 btn btn-dark w-100 d-flex align-items-center justify-content-start p-3 rounded-3 hover-bg-dark d-flex gap-2">
-                        <i class="fas fa-sign-out-alt mr-3"></i>
-                        <span>Logout</span>
-                    </button>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -82,23 +82,3 @@
   </body>
 </html>
 
-{{-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
-
-    <h2>Dashboard</h2>
-    <p>Welcome, {{ auth()->user()->name }}</p>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-
-</body>
-</html> --}}
