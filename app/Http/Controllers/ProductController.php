@@ -30,10 +30,10 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'supplier_id' => 'nullable|exists:suppliers,id',
+            'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
         Product::create($request->all());
@@ -52,11 +52,20 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'description' => 'nullable|string',
-            'supplier_id' => 'nullable|exists:suppliers,id',
+            'description' => 'required|string',
+            'supplier_id' => 'required|exists:suppliers,id',
         ]);
 
         $product->update($request->all());
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+    }
+
+    /**
+     * Menghapus produk.
+     */
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }

@@ -43,7 +43,7 @@
                 <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                 <td>{{ $product->stock }}</td>
                 <td>{{ $product->description }}</td>
-                <td>{{ $product->supplier->name }}</td>
+                <td>{{ $product->supplier->name ?? 'N/A' }}</td>
                 <td>
                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
