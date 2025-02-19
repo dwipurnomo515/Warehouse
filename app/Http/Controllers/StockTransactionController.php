@@ -37,12 +37,11 @@ class StockTransactionController extends Controller
             'product_id' => 'required|exists:products,id',
             'type' => 'required|in:in,out',
             'quantity' => 'required|integer|min:1',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
 
         $product = Product::findOrFail($request->product_id);
 
-        // Update stok produk
         if ($request->type === 'in') {
             $product->increment('stock', $request->quantity);
         } else {
@@ -52,7 +51,6 @@ class StockTransactionController extends Controller
             $product->decrement('stock', $request->quantity);
         }
 
-        // Simpan transaksi
         StockTransaction::create([
             'product_id'  => $request->product_id,
             'type'        => $request->type,

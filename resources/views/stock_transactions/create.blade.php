@@ -31,6 +31,10 @@
     <div class="mb-3">
         <label class="form-label">Description</label>
         <textarea class="form-control" name="description"></textarea>
+        
+        @error('description')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
     <button type="submit" class="btn btn-primary mb-3 w-100">Save</button>
 </form>

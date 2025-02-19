@@ -7,7 +7,7 @@
 
 @section('contents')
     <div class="m-3">
-        <form action="{{ route('purchases.store') }}" method="POST" class="d-flex flex-column gap-1">
+        <form action="{{ route('purchases.store') }}" method="POST" class="d-flex flex-column gap-2">
             @csrf
             <div class="form-group">
                 <label for="supplier_id">Supplier</label>

@@ -12,16 +12,27 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" required>
+
+            @error('name')
+             <small class="text-danger">{{ $message }}</small>
+             @enderror
         </div>
         
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control" required>
+            @error('email')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
         
         <div class="form-group">
             <label for="phone">Phone</label>
             <input type="text" name="phone" id="phone" class="form-control">
+
+            @error('phone')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
         
         

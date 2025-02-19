@@ -44,7 +44,7 @@
             @foreach($suppliers as $supplier)
                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
             @endforeach
-        </select>
+        </select>   
         @error('supplier_id')
                <small class="text-danger">{{ $message }}</small>
            @enderror
