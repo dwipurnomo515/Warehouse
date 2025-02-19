@@ -2,6 +2,14 @@
 
 @section('content')
 
+@if(session('errors'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('errors') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
         <div class="card shadow-sm border-0" style="max-width: 400px; width: 100%; border-radius: 12px;">
             <div class="card-body p-4">
