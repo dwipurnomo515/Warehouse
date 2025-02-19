@@ -61,10 +61,14 @@
                     </button>
                 </li>
                 <li>
+                  
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit">Logout</button>
-                    </form>
+                        <button type="submit" class="mt-5 btn btn-dark w-100 d-flex align-items-center justify-content-start p-3 rounded-3 hover-bg-dark d-flex gap-2">
+                            <i class="fas fa-sign-out-alt mr-3"></i>
+                            <span>Logout</span>
+                        </button>
+                     </form>
                 </li>
             </ul>
         </div>
@@ -81,4 +85,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
-
