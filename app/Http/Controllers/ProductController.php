@@ -3,37 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Menampilkan daftar produk.
-     */
     public function index(Request $request)
     {
-        $query = Product::query();
+        $query = Product::with('supplier');
 
         if ($request->has('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
         $products = $query->paginate(5);
-
         return view('products.index', compact('products'));
     }
 
-    /**
-     * Menampilkan form tambah produk.
-     */
     public function create()
     {
-        return view('products.create');
+        $suppliers = Supplier::all();
+        return view('products.create', compact('suppliers'));
     }
 
-    /**
-     * Menyimpan produk baru.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -41,32 +33,19 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
+            'supplier_id' => 'nullable|exists:suppliers,id',
         ]);
 
         Product::create($request->all());
-
         return redirect()->route('products.index')->with('success', 'Product added successfully!');
     }
 
-    /**
-     * Menampilkan detail produk.
-     */
-    public function show(Product $product)
-    {
-        return view('products.show', compact('product'));
-    }
-
-    /**
-     * Menampilkan form edit produk.
-     */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $suppliers = Supplier::all();
+        return view('products.edit', compact('product', 'suppliers'));
     }
 
-    /**
-     * Menyimpan perubahan produk.
-     */
     public function update(Request $request, Product $product)
     {
         $request->validate([
@@ -74,19 +53,10 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|integer',
             'description' => 'nullable|string',
+            'supplier_id' => 'nullable|exists:suppliers,id',
         ]);
 
         $product->update($request->all());
-
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
-    }
-
-    /**
-     * Menghapus produk.
-     */
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }
