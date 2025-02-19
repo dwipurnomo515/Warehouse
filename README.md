@@ -31,8 +31,8 @@ Pastikan sudah menginstal Composer dan Node.js.
 Jalankan perintah:
 composer install
 npm install
-3️⃣ Copy & Konfigurasi .env
 
+3️⃣ Copy & Konfigurasi .env
 cp .env.example .env
 Kemudian edit file .env untuk mengatur database:
 
@@ -43,14 +43,14 @@ DB_PORT=3306
 DB_DATABASE=my_database
 DB_USERNAME=root
 DB_PASSWORD=
+
 4️⃣ Generate Key
-
 php artisan key:generate
+
 5️⃣ Migrasi Database
-
 php artisan migrate --seed
-6️⃣ Jalankan Server
 
+6️⃣ Jalankan Server
 php artisan serve
 Akses aplikasi di browser:
 👉 http://127.0.0.1:8000
@@ -65,6 +65,3 @@ Perbarui informasi dan tekan Update.
 🔹 Menghapus Data
 Klik tombol Delete.
 Konfirmasi penghapusan dengan SweetAlert.
-
-
-
